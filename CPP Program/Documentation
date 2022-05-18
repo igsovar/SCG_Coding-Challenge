@@ -1,0 +1,6 @@
+The program takes in from the .pb file and outputs the text by setting it as a note and pushing to the console. The timestamp did not have any set function so I output the has_timestamp function
+
+Below is the way I compiled the code:
+g++ -std=c++17 main.cpp scg_test.pb.cc -o main `pkg-config --cflags --libs protobuf`
+
+
