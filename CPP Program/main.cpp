@@ -12,9 +12,9 @@ using namespace google::protobuf::io;
 int main(int argc, char* argv[]){
   GOOGLE_PROTOBUF_VERIFY_VERSION;
     SCGTest::TestMessage message; //creating the TestMessage object
-    string inputFile = "scg_test.pb";
+    //string inputFile = "scg_test.pb";
     
-        ifstream file(inputFile, ios::in | ios::binary);
+        ifstream file(argv[1], ios::in | ios::binary); 
         if(!message.ParseFromIstream(&file)){
             cerr << "Failed to read file" << argv[1] << endl;
             return -1;
@@ -22,5 +22,4 @@ int main(int argc, char* argv[]){
 
         cout << message.notes() << endl;
         
-        //google::protobuf::Timestamp created_timestamp = message->created;
 }
