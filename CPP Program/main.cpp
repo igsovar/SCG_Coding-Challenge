@@ -1,19 +1,26 @@
+#include <google/protobuf/io/printer.h>
 #include<iostream>
 #include<string>
 #include<fstream>
 #include"scg_test.pb.h"
+#include <fcntl.h>
+#include <google/protobuf/text_format.h>
+#include <google/protobuf/io/zero_copy_stream_impl.h>
 using namespace std;
+using namespace google::protobuf::io;
 
 int main(int argc, char* argv[]){
-    SCGTest::TestMessage message; //creating the proto object
-    ifstream file ("scg_test.pb"); //opening .pb file
-    string inputFile; //string for the input from the file
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+    SCGTest::TestMessage message; //creating the TestMessage object
+    string inputFile = "scg_test.pb";
+    
+        ifstream file(inputFile, ios::in | ios::binary);
+        if(!message.ParseFromIstream(&file)){
+            cerr << "Failed to read file" << argv[1] << endl;
+            return -1;
+        }
 
-    while(file >> inputFile){
-        message.has_timestamp();
-        message.set_notes(inputFile); //adding contents of the file to notes
-        cout << message.notes() << "  "; //outputting what was written to notes to the console
-        cout << message.has_timestamp() << "\n";
-    }
-
+        cout << message.notes() << endl;
+        
+        //google::protobuf::Timestamp created_timestamp = message->created;
 }
