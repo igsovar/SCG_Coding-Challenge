@@ -3,4 +3,4 @@ The program takes in from the .pb file and outputs the text by setting it as a n
 Below is the way I compiled the code:
 g++ -std=c++17 main.cpp scg_test.pb.cc -o main `pkg-config --cflags --libs protobuf`
 
-
+Program takes in the .pb filename on the console so when running I run ./main scg_test.pb
