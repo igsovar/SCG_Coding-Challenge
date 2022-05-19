@@ -1,3 +1,4 @@
+#include <google/protobuf/io/printer.h>
 #include<iostream>
 #include<string>
 #include<fstream>
@@ -13,8 +14,8 @@ int main(int argc, char* argv[]){
     SCGTest::TestMessage message; //creating the TestMessage object
     //string inputFile = "scg_test.pb";
     
-        ifstream file(argv[1], ios::in | ios::binary); 
-        if(!message.ParseFromIstream(&file)){
+        fstream input(argv[1], ios::in | ios::binary); 
+        if(!message.ParseFromIstream(&input)){
             cerr << "Failed to read file" << argv[1] << endl;
             return -1;
         }
